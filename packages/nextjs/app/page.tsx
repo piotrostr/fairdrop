@@ -13,7 +13,7 @@ const ChainNameToLogo = (chainId: string) => {
   switch (chainId) {
     case "Foundry":
       return <Image src="/foundry-logo.png" alt="Foundry" width={24} height={24} />;
-    case "Optimism":
+    case "OP Mainnet":
       return <Image src="/optimism-logo.svg" alt="Optimism" width={24} height={24} />;
     case "Ethereum":
       return <Image src="/ethereum-logo.svg" alt="Ethereum" width={24} height={24} />;
