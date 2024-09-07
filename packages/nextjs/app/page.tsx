@@ -27,13 +27,14 @@ const Home: NextPage = () => {
   const [isVerified, setIsVerified] = useState(false);
 
   useEffect(() => {
-    if (!fairDrop || !connectedAddress) return;
+    if (!fairDrop || !connectedAddress || isVerified) return;
     const checkIsVerified = async () => {
+      console.log("Checking if verified");
       const _isVerified = await fairDrop.read.isVerified([connectedAddress]);
       setIsVerified(_isVerified);
     };
     checkIsVerified();
-  }, [fairDrop, isLoading, connectedAddress]);
+  }, [fairDrop, isLoading, connectedAddress, isVerified]);
 
   return (
     <div className="flex flex-col items-center justify-center flex-grow bg-gradient-to-b from-base-200 to-base-300 px-4 py-12">
@@ -66,7 +67,7 @@ const Home: NextPage = () => {
               </div>
             </div>
             <div className="flex flex-col items-center justify-center space-y-8">
-              {isLoading ? (
+              {isLoading || isConnecting ? (
                 <span className="loading loading-spinner loading-lg"></span>
               ) : isVerified ? (
                 <div className="flex flex-col items-center text-success">
@@ -104,7 +105,7 @@ const Home: NextPage = () => {
         {isVerified && (
           <div className="mt-8 text-center">
             <p className="text-xl font-semibold text-success">Congratulations! The verification was successful</p>
-            <p className="mt-2 text-base-content/70">You can now proceed with using FairDrop.</p>
+            <p className="mt-2 text-base-content/70">*Your ID has been cross-chain populated to ...*</p>
           </div>
         )}
       </main>
