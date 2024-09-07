@@ -7,3 +7,6 @@
 [submodule "packages/foundry/lib/solidity-bytes-utils"]
 	path = packages/foundry/lib/solidity-bytes-utils
 	url = https://github.com/gnsps/solidity-bytes-utils
+[submodule "packages/foundry/lib/wormhole-solidity-sdk"]
+	path = packages/foundry/lib/wormhole-solidity-sdk
+	url = https://github.com/wormhole-foundation/wormhole-solidity-sdk
