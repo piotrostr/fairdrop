@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { SwitchTheme } from "~~/components/SwitchTheme";
 import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 
 /**
@@ -20,6 +21,9 @@ export const Header = () => {
       </div>
       <div className="navbar-end flex-grow mr-4">
         <RainbowKitCustomConnectButton />
+        <div className="ml-2">
+          <SwitchTheme />
+        </div>
       </div>
     </div>
   );
