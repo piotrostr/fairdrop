@@ -22,7 +22,7 @@ const ChainNameToLogo = (chainId: string) => {
 };
 
 const Home: NextPage = () => {
-  const { address: connectedAddress, chain } = useAccount();
+  const { address: connectedAddress, chain, isConnecting } = useAccount();
   const { data: fairDrop, isLoading } = useScaffoldContract({ contractName: "FairDrop" });
   const [isVerified, setIsVerified] = useState(false);
 
@@ -45,7 +45,17 @@ const Home: NextPage = () => {
                 <h2 className="text-2xl font-semibold">Account Information</h2>
                 <div className="space-y-2">
                   <p className="font-medium text-base-content/70">Connected Address</p>
-                  <Address address={connectedAddress} />
+                  {connectedAddress ? (
+                    <Address address={connectedAddress} />
+                  ) : (
+                    <>
+                      {isLoading ? (
+                        <Address address={connectedAddress} />
+                      ) : (
+                        <span className="text-error">Wallet not connected</span>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
               <div className="space-y-4">
@@ -75,12 +85,16 @@ const Home: NextPage = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="animate-pulse flex space-x-4 justify-center">
-                      <div className="rounded-md bg-slate-300 h-6 w-6"></div>
-                      <div className="flex items-center space-y-6">
-                        <div className="h-2 w-28 bg-slate-300 rounded"></div>
-                      </div>
-                    </div>
+                    <>
+                      {isConnecting ? (
+                        <div className="animate-pulse flex space-x-4 justify-center">
+                          <div className="rounded-md bg-slate-300 h-6 w-6"></div>
+                          <div className="flex items-center space-y-6">
+                            <div className="h-2 w-28 bg-slate-300 rounded"></div>
+                          </div>
+                        </div>
+                      ) : null}
+                    </>
                   )}
                 </div>
               )}
