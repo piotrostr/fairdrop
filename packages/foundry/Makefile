@@ -22,7 +22,7 @@ deploy:
 	@if [ "$(RPC_URL)" = "localhost" ]; then \
 		forge script script/Deploy.s.sol --rpc-url localhost --password localhost --broadcast --legacy --ffi; \
 	else \
-		forge script script/Deploy.s.sol --rpc-url $(RPC_URL) --broadcast --legacy --ffi; \
+		forge script script/Deploy.s.sol --rpc-url $(RPC_URL) --broadcast --legacy --ffi --private-key $(DEPLOYER_PRIVATE_KEY); \
 	fi
 
 # Build and deploy target
