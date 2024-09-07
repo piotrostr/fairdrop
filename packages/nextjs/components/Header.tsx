@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { SwitchTheme } from "~~/components/SwitchTheme";
 import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
@@ -17,6 +18,10 @@ export const Header = () => {
             <span className="text-lg">🚨</span>
             <span className="font-bold leading-tight">FairDrop</span>
           </div>
+        </Link>
+        <Link href="https://github.com/piotrostr/fairdrop" target="_blank" rel="noopener noreferrer" className="ml-2">
+          <Image src="/github-logo.svg" alt="GitHub" width={24} height={24} className="dark:hidden" />
+          <Image src="/github-logo-white.svg" alt="GitHub" width={24} height={24} className="hidden dark:block" />
         </Link>
       </div>
       <div className="navbar-end flex-grow mr-4">
