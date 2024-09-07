@@ -2,13 +2,14 @@ import Image from "next/image";
 import { IDKitWidget, ISuccessResult } from "@worldcoin/idkit";
 import { decodeAbiParameters } from "viem";
 import { useAccount } from "wagmi";
-import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { useScaffoldWriteContract, useTargetNetwork } from "~~/hooks/scaffold-eth";
 
 const WORLD_COIN_APP_ID = "app_staging_626967e88f37cd8298c574355383e9b2";
 const WORLD_COIN_ACTION_ID = "verify";
 
 export const WorldCoinVerification = () => {
-  const { address } = useAccount();
+  const { address, chain } = useAccount();
+  const { targetNetwork } = useTargetNetwork();
   const { writeContractAsync: fairDrop, isPending } = useScaffoldWriteContract("FairDrop");
 
   const onSuccess = async (result: ISuccessResult) => {
@@ -34,6 +35,8 @@ export const WorldCoinVerification = () => {
     }
   };
 
+  const disabled = chain?.id !== targetNetwork.id || isPending;
+
   return (
     <IDKitWidget
       app_id={WORLD_COIN_APP_ID}
@@ -45,7 +48,7 @@ export const WorldCoinVerification = () => {
       {({ open }) => (
         <WorldCoinButton
           onClick={open}
-          disabled={isPending}
+          disabled={disabled}
           text={isPending ? "Verifying..." : "Verify with World ID"}
         />
       )}
