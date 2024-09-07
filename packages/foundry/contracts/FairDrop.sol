@@ -31,14 +31,16 @@ contract FairDrop {
   /// @param _appId The World ID app ID
   /// @param _actionId The World ID action ID
   constructor(
-    IWorldID _worldId,
+    address _worldId,
     string memory _appId,
-    string memory _actionId
+    string memory _actionId,
+    address _wormhole
   ) {
-    worldId = _worldId;
+    worldId = IWorldID(_worldId);
     externalNullifier = abi.encodePacked(
       abi.encodePacked(_appId).hashToField(), _actionId
     ).hashToField();
+    _wormhole;
   }
 
   /// @param signal An arbitrary input from the user, usually the user's wallet address (check README for further details)
