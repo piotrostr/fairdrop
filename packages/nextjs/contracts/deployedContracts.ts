@@ -5,9 +5,122 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
+  10: {
+    FairDrop: {
+      address: "0xeb98b67d22c2b105891a20f337bf2b185a8ceee8",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_worldId",
+              type: "address",
+              internalType: "contract IWorldID",
+            },
+            {
+              name: "_appId",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_actionId",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "isVerified",
+          inputs: [
+            {
+              name: "_address",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "verifyAndExecute",
+          inputs: [
+            {
+              name: "signal",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "root",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "nullifierHash",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "proof",
+              type: "uint256[8]",
+              internalType: "uint256[8]",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "worldId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IWorldID",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "event",
+          name: "Verified",
+          inputs: [
+            {
+              name: "nullifierHash",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "DuplicateNullifier",
+          inputs: [
+            {
+              name: "nullifierHash",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
   31337: {
     FairDrop: {
-      address: "0x700b6a60ce7eaaea56f065753d8dcb9653dbad35",
+      address: "0x8ce361602b935680e8dec218b820ff5056beb7af",
       abi: [
         {
           type: "constructor",

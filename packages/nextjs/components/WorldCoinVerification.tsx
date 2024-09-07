@@ -4,7 +4,7 @@ import { decodeAbiParameters } from "viem";
 import { useAccount } from "wagmi";
 import { useScaffoldWriteContract, useTargetNetwork } from "~~/hooks/scaffold-eth";
 
-const WORLD_COIN_APP_ID = "app_staging_626967e88f37cd8298c574355383e9b2";
+const WORLD_COIN_APP_ID = "app_9f3c3c467dbfb7c616671b1b07c3f221";
 const WORLD_COIN_ACTION_ID = "verify";
 
 export const WorldCoinVerification = () => {

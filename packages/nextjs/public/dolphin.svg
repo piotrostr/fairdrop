@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Body -->
+  <rect x="16" y="24" width="32" height="16" fill="#4AA5D4"/>
+  <rect x="12" y="28" width="4" height="8" fill="#4AA5D4"/>
+  <rect x="8" y="32" width="4" height="4" fill="#4AA5D4"/>
+  <rect x="48" y="28" width="4" height="8" fill="#4AA5D4"/>
+  <rect x="52" y="32" width="4" height="4" fill="#4AA5D4"/>
+
+  <!-- Tail -->
+  <rect x="56" y="28" width="4" height="8" fill="#4AA5D4"/>
+  <rect x="60" y="24" width="4" height="4" fill="#4AA5D4"/>
+  <rect x="60" y="36" width="4" height="4" fill="#4AA5D4"/>
+
+  <!-- Fins -->
+  <rect x="24" y="40" width="8" height="4" fill="#4AA5D4"/>
+  <rect x="28" y="44" width="4" height="4" fill="#4AA5D4"/>
+  <rect x="40" y="20" width="8" height="4" fill="#4AA5D4"/>
+
+  <!-- Eye -->
+  <rect x="16" y="28" width="4" height="4" fill="#FFFFFF"/>
+  <rect x="18" y="30" width="2" height="2" fill="#000000"/>
+
+  <!-- Mouth -->
+  <rect x="8" y="36" width="8" height="2" fill="#3894C3"/>
+
+  <!-- Highlights -->
+  <rect x="20" y="24" width="24" height="4" fill="#5CB3E2"/>
+  <rect x="24" y="28" width="16" height="4" fill="#5CB3E2"/>
+
+  <!-- Shading -->
+  <rect x="16" y="36" width="28" height="4" fill="#3894C3"/>
+  <rect x="44" y="32" width="4" height="4" fill="#3894C3"/>
+</svg>
