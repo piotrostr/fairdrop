@@ -282,9 +282,7 @@ const deployedContracts = {
           inputs: [],
         },
       ],
-      inheritedFunctions: {
-        receiveWormholeMessages: "lib/wormhole-solidity-sdk/src/interfaces/IWormholeReceiver.sol",
-      },
+      inheritedFunctions: {},
     },
   },
   31337: {
@@ -564,9 +562,7 @@ const deployedContracts = {
           inputs: [],
         },
       ],
-      inheritedFunctions: {
-        receiveWormholeMessages: "lib/wormhole-solidity-sdk/src/interfaces/IWormholeReceiver.sol",
-      },
+      inheritedFunctions: {},
     },
   },
   42161: {
@@ -794,9 +790,7 @@ const deployedContracts = {
           inputs: [],
         },
       ],
-      inheritedFunctions: {
-        receiveWormholeMessages: "lib/wormhole-solidity-sdk/src/interfaces/IWormholeReceiver.sol",
-      },
+      inheritedFunctions: {},
     },
   },
 } as const;
