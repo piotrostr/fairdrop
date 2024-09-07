@@ -35,7 +35,8 @@ export const WorldCoinVerification = () => {
     }
   };
 
-  const disabled = chain?.id !== targetNetwork.id || isPending;
+  const disabled =
+    chain?.id !== targetNetwork.id || isPending || chain?.name === "Arbitrum One" || chain?.name === "Foundry";
 
   return (
     <IDKitWidget

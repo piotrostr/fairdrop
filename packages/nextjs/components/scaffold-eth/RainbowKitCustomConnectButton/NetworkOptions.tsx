@@ -19,7 +19,7 @@ export const NetworkOptions = ({ hidden = false }: NetworkOptionsProps) => {
   return (
     <>
       {allowedNetworks
-        .filter(allowedNetwork => allowedNetwork.id !== chain?.id)
+        .filter(allowedNetwork => allowedNetwork.id !== chain?.id && allowedNetwork.name !== "Foundry")
         .map(allowedNetwork => (
           <li key={allowedNetwork.id} className={hidden ? "hidden" : ""}>
             <button

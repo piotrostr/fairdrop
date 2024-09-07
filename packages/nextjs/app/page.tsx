@@ -17,6 +17,8 @@ const ChainNameToLogo = (chainId: string) => {
       return <Image src="/optimism-logo.svg" alt="Optimism" width={24} height={24} />;
     case "Ethereum":
       return <Image src="/ethereum-logo.svg" alt="Ethereum" width={24} height={24} />;
+    case "Arbitrum One":
+      return <Image src="/arbitrum-logo.svg" alt="Arbitrum" width={24} height={24} />;
   }
   return <>🔌</>;
 };
@@ -24,7 +26,12 @@ const ChainNameToLogo = (chainId: string) => {
 const Home: NextPage = () => {
   const { address: connectedAddress, chain, isConnecting } = useAccount();
   const { data: fairDrop, isLoading } = useScaffoldContract({ contractName: "FairDrop" });
+  const { data: fairDropSatellite, isLoading: isLoadingSatellite } = useScaffoldContract({
+    // @ts-ignore, some typing shenanigans, this does exist in `../contracts/deployedContracts.ts` tho
+    contractName: "FairDropSatellite",
+  });
   const [isVerified, setIsVerified] = useState(false);
+  const [isVerifiedSatellite, setIsVerifiedSatellite] = useState(false);
 
   useEffect(() => {
     if (!fairDrop || !connectedAddress || isVerified) return;
@@ -35,6 +42,16 @@ const Home: NextPage = () => {
     };
     checkIsVerified();
   }, [fairDrop, isLoading, connectedAddress, isVerified]);
+
+  useEffect(() => {
+    if (!fairDropSatellite || !connectedAddress) return;
+    const checkIsVerifiedSatellite = async () => {
+      console.log("Checking if verified satellite");
+      const _isVerifiedSatellite = await fairDropSatellite.read.isVerified([connectedAddress]);
+      setIsVerifiedSatellite(_isVerifiedSatellite);
+    };
+    checkIsVerifiedSatellite();
+  }, [fairDropSatellite, isLoadingSatellite, connectedAddress]);
 
   return (
     <div className="flex flex-col items-center justify-center flex-grow bg-gradient-to-b from-base-200 to-base-300 px-4 py-12">
@@ -61,8 +78,17 @@ const Home: NextPage = () => {
               </div>
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <p className="font-medium text-base-content/70">FairDrop Address</p>
-                  <Address address={fairDrop?.address} />
+                  {chain?.name === "Arbitrum One" ? (
+                    <>
+                      <p className="font-medium text-base-content/70">FairDrop Satellite Address</p>
+                      <Address address={fairDropSatellite?.address} />
+                    </>
+                  ) : (
+                    <>
+                      <p className="font-medium text-base-content/70">FairDrop Address</p>
+                      <Address address={fairDrop?.address} />
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -102,11 +128,26 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-        {isVerified && (
-          <div className="mt-8 text-center">
-            <p className="text-xl font-semibold text-success">Congratulations! The verification was successful</p>
-            <p className="mt-2 text-base-content/70">*Your ID has been cross-chain populated to ...*</p>
-          </div>
+        {chain?.name === "Arbitrum One" ? (
+          <>
+            {isVerifiedSatellite && (
+              <div className="mt-8 text-center">
+                <p className="text-xl font-semibold text-success">You are verified on Arbitrum too</p>
+                <p className="mt-2 text-base-content/70">Nice</p>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            {isVerified && (
+              <div className="mt-8 text-center">
+                <p className="text-xl font-semibold text-success">
+                  Congratulations! The verification was successful on Optimism
+                </p>
+                <p className="mt-2 text-base-content/70">Your ID has been cross-chain populated to Arbitrum</p>
+              </div>
+            )}
+          </>
         )}
       </main>
     </div>
