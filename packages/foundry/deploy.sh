@@ -6,5 +6,6 @@ forge script script/Deploy.s.sol \
     --legacy \
     --ffi \
     --froms $DEPLOYER_ADDRESS \
-    --private-key $DEPLOYER_PRIVATE_KEY && node scripts-js/generateTsAbis.js \
-    --sender $DEPLOYER_ADDRESS
+    --private-key $DEPLOYER_PRIVATE_KEY \
+    --sender $DEPLOYER_ADDRESS \
+    && node scripts-js/generateTsAbis.js
