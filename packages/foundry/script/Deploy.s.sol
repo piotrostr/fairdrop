@@ -2,6 +2,7 @@
 pragma solidity ^0.8.19;
 
 import "../contracts/FairDrop.sol";
+import "../contracts/FairDropSatellite.sol";
 import "./DeployHelpers.s.sol";
 import { DeployFairDrop } from "./00_deploy_fair_drop.s.sol";
 import { DeployFairDropSatellite } from "./01_deploy_satellite.s.sol";
