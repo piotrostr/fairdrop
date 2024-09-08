@@ -34,17 +34,6 @@ forge script script/Deploy.s.sol \
 FAIRDROP_SATELLITE_ADDRESS=$(grep -A1 '"FairDropSatellite"' deployments/42161.json | tail -n 1 | awk -F'"' '{print $2}')
 export FAIRDROP_SATELLITE_ADDRESS
 
-# Set the receiver for FairDrop on Optimism
-echo "Setting receiver for FairDrop on Optimism..."
-forge script script/Deploy.s.sol \
-    --rpc-url "$OPTIMISM_RPC_URL" \
-    --broadcast \
-    --legacy \
-    --ffi \
-    --froms $DEPLOYER_ADDRESS \
-    --private-key $DEPLOYER_PRIVATE_KEY \
-    --sender $DEPLOYER_ADDRESS
-
 # Ensure artifacts are up to date
 echo "Rebuilding artifacts..."
 forge build
@@ -56,4 +45,5 @@ node scripts-js/generateTsAbis.js
 echo "Deployment and ABI generation complete."
 echo "FairDrop address on Optimism: $FAIRDROP_ADDRESS"
 echo "FairDropSatellite address on Arbitrum: $FAIRDROP_SATELLITE_ADDRESS"
-echo "Please ensure these addresses are correctly set in both contracts."
+echo "Please set the verifier and receiver manually for both contracts."
+

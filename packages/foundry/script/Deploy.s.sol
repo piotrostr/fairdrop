@@ -22,18 +22,6 @@ contract DeployScript is ScaffoldETHDeploy {
           "FairDrop deployed on Optimism at: ", vm.toString(fairDropAddress)
         )
       );
-
-      // Set receiver information if available
-      address storedSatelliteAddress =
-        vm.envAddress("FAIRDROP_SATELLITE_ADDRESS");
-      if (storedSatelliteAddress != address(0)) {
-        FairDrop(fairDropAddress).setReceiver(42161, storedSatelliteAddress);
-        console.logString("Receiver set for FairDrop");
-      } else {
-        console.logString(
-          "FairDropSatellite address not available. Please set it manually later."
-        );
-      }
     } else if (block.chainid == 42161) {
       // Deploy on Arbitrum
       DeployFairDropSatellite deployFairDropSatellite =
@@ -46,19 +34,6 @@ contract DeployScript is ScaffoldETHDeploy {
           vm.toString(fairDropSatelliteAddress)
         )
       );
-
-      // Set verifier information if available
-      address storedFairDropAddress = vm.envAddress("FAIRDROP_ADDRESS");
-      if (storedFairDropAddress != address(0)) {
-        FairDropSatellite(fairDropSatelliteAddress).setVerifier(
-          10, storedFairDropAddress
-        );
-        console.logString("Verifier set for FairDropSatellite");
-      } else {
-        console.logString(
-          "FairDrop address not available. Please set it manually later."
-        );
-      }
     } else {
       revert("Unsupported chain ID");
     }

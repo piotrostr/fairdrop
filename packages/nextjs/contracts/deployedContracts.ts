@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   10: {
     FairDrop: {
-      address: "0x859a661a05c3f2fbec2f08a9d2656f0092b3ce7a",
+      address: "0x04a85361c22ed1ddf4f3ecb998570fc71a5df991",
       abi: [
         {
           type: "constructor",
@@ -153,6 +153,34 @@ const deployedContracts = {
             },
           ],
           stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "verify",
+          inputs: [
+            {
+              name: "signal",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "root",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "nullifierHash",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "proof",
+              type: "uint256[8]",
+              internalType: "uint256[8]",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
         },
         {
           type: "function",
@@ -436,6 +464,34 @@ const deployedContracts = {
         },
         {
           type: "function",
+          name: "verify",
+          inputs: [
+            {
+              name: "signal",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "root",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "nullifierHash",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "proof",
+              type: "uint256[8]",
+              internalType: "uint256[8]",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
           name: "verifyAndPropagate",
           inputs: [
             {
@@ -567,7 +623,7 @@ const deployedContracts = {
   },
   42161: {
     FairDropSatellite: {
-      address: "0xeb98b67d22c2b105891a20f337bf2b185a8ceee8",
+      address: "0x146174bd95fb5b71dd6aa6dd003d52d0bc4da799",
       abi: [
         {
           type: "constructor",
