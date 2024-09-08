@@ -4,7 +4,7 @@
 - [Wormhole](https://docs.wormhole.com/wormhole/quick-start/tutorials/hello-wormhole/hello-wormhole-explained)
 
 You can power-up your smart contract to only serve WorldID Orb verified users
-by calling the `isVerified` function of the smart contract on the network of
+by calling the `isVerified` function of the FairDrop contract on the network of
 your choice.
 
 ## Mainnet Addresses:
