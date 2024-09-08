@@ -5,4 +5,4 @@
 
 Let's make Ethereum fair again! 🚀
 
-<sub>Made with <3 by piotrostr.eth</sub>
+<sub>Made with ❤️ by piotrostr.eth</sub>
