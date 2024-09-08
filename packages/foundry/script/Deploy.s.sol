@@ -1,4 +1,4 @@
-//SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
 import "../contracts/FairDrop.sol";
@@ -8,38 +8,55 @@ import { DeployFairDrop } from "./00_deploy_fair_drop.s.sol";
 import { DeployFairDropSatellite } from "./01_deploy_satellite.s.sol";
 
 contract DeployScript is ScaffoldETHDeploy {
+  address public fairDropAddress;
+  address public fairDropSatelliteAddress;
+
   function run() external {
     if (block.chainid == 10) {
       // Deploy on Optimism
       DeployFairDrop deployFairDrop = new DeployFairDrop();
       deployFairDrop.run();
-      console.logString("FairDrop deployed on Optimism");
+      fairDropAddress = getDeploymentAddress("FairDrop");
+      console.logString(
+        string.concat(
+          "FairDrop deployed on Optimism at: ", vm.toString(fairDropAddress)
+        )
+      );
+
+      // Set receiver information if available
+      address storedSatelliteAddress =
+        vm.envAddress("FAIRDROP_SATELLITE_ADDRESS");
+      if (storedSatelliteAddress != address(0)) {
+        FairDrop(fairDropAddress).setReceiver(42161, storedSatelliteAddress);
+        console.logString("Receiver set for FairDrop");
+      } else {
+        console.logString(
+          "FairDropSatellite address not available. Please set it manually later."
+        );
+      }
     } else if (block.chainid == 42161) {
       // Deploy on Arbitrum
       DeployFairDropSatellite deployFairDropSatellite =
         new DeployFairDropSatellite();
       deployFairDropSatellite.run();
-      console.logString("FairDropSatellite deployed on Arbitrum");
+      fairDropSatelliteAddress = getDeploymentAddress("FairDropSatellite");
+      console.logString(
+        string.concat(
+          "FairDropSatellite deployed on Arbitrum at: ",
+          vm.toString(fairDropSatelliteAddress)
+        )
+      );
 
-      // Set cross-chain information
-      address fairDropAddress = getDeploymentAddress("FairDrop");
-      address fairDropSatelliteAddress =
-        getDeploymentAddress("FairDropSatellite");
-
-      if (
-        fairDropAddress != address(0) && fairDropSatelliteAddress != address(0)
-      ) {
-        FairDrop fairDrop = FairDrop(fairDropAddress);
-        FairDropSatellite fairDropSatellite =
-          FairDropSatellite(fairDropSatelliteAddress);
-
-        fairDrop.setReceiver(42161, fairDropSatelliteAddress);
-        fairDropSatellite.setVerifier(10, fairDropAddress);
-
-        console.logString("Cross-chain information set successfully");
+      // Set verifier information if available
+      address storedFairDropAddress = vm.envAddress("FAIRDROP_ADDRESS");
+      if (storedFairDropAddress != address(0)) {
+        FairDropSatellite(fairDropSatelliteAddress).setVerifier(
+          10, storedFairDropAddress
+        );
+        console.logString("Verifier set for FairDropSatellite");
       } else {
         console.logString(
-          "Unable to set cross-chain information. Make sure both contracts are deployed."
+          "FairDrop address not available. Please set it manually later."
         );
       }
     } else {

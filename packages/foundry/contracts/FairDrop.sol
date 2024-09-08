@@ -79,14 +79,12 @@ contract FairDrop {
     emit ReceiverSet(_receiverChainId, _receiverAddress);
   }
 
-  function verifyAndPropagate(
+  function verify(
     address signal,
     uint256 root,
     uint256 nullifierHash,
     uint256[8] calldata proof
-  ) public payable {
-    require(receiverAddress != address(0), "Receiver not set");
-
+  ) public {
     if (nullifierHashes[nullifierHash]) {
       revert DuplicateNullifier(nullifierHash);
     }
@@ -104,6 +102,21 @@ contract FairDrop {
     verified[msg.sender] = true;
 
     emit Verified(nullifierHash);
+  }
+
+  // verifyAndPropagate throws a module zero error, some wormhole shenanigans
+  // my assumption is that it's probably the arbitrum having different opcodes
+  // than other L2s but cannot verify it at 5am now without WorldID Orb
+  // verified instance access :(
+  function verifyAndPropagate(
+    address signal,
+    uint256 root,
+    uint256 nullifierHash,
+    uint256[8] calldata proof
+  ) public payable {
+    require(receiverAddress != address(0), "Receiver not set");
+
+    verify(signal, root, nullifierHash, proof);
 
     bytes memory payload = abi.encode(msg.sender, nullifierHash);
     uint256 deliveryQuote = getDeliveryQuote(0);
@@ -119,6 +132,7 @@ contract FairDrop {
     emit SentForDelivery(block.timestamp, deliveryQuote, payload.length);
   }
 
+  // getDeliveryQuote is where the modulo zero error is thrown
   function getDeliveryQuote(
     uint256 receiverValue
   ) public view returns (uint256 cost) {

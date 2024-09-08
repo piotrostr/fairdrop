@@ -4,6 +4,9 @@ pragma solidity ^0.8.13;
 import { IWormholeReceiver } from
   "wormhole-solidity-sdk/interfaces/IWormholeReceiver.sol";
 
+/// @title FairDropSatellite
+/// @notice A contract that receives messages from the FairDrop verifier and
+/// lives / on any L2 EVM-compatible chain
 contract FairDropSatellite is IWormholeReceiver {
   error VerifierAlreadySet();
 

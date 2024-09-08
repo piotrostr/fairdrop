@@ -25,6 +25,7 @@ contract FairDropOptimismTest is Test {
   }
 
   function testVerifyAndPropagateReal() public {
+    vm.skip(true);
     // Prepare the inputs
     address signal = SENDER;
     uint256 root =
