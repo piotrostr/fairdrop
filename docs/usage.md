@@ -50,3 +50,21 @@ FairDrop contract through Wormhole
 
 Satellite cannot perform verification, it is only a mirror of the data in the
 core contract
+
+This graphs encapsulates the flow from the higher-level:
+
+```mermaid
+graph TD
+    A[User] -->|Initiates verification| B(FairDrop Contract on Optimism)
+    B -->|Verifies proof| C{WorldID}
+    C -->|Returns verification| B
+    B -->|Emits Verified event| B
+    B -->|Prepares payload| D[Wormhole Relayer on Optimism]
+    D -->|Sends cross-chain message| E[Wormhole Relayer on Arbitrum]
+    E -->|Delivers message| F(FairDropSatellite Contract on Arbitrum)
+    F -->|Updates user status| F
+    F -->|Emits VerificationPropagated event| F
+    G[Admin] -->|Sets receiver| B
+    H[Admin] -->|Sets verifier| F
+    I[User] -->|Checks verification status| F
+```
