@@ -48,8 +48,7 @@ function antiSybilFunction() public onlyVerified {
 There is a Satellite contract on Arbitrum that receives data from Optimism core
 FairDrop contract through Wormhole
 
-Satellite cannot perform verification, it is only a mirror of the data in the
-core contract
+Satellites doesn't perform WorldID verification, it only reflects the data that based on proofs verified by the FairDrop Verifier contract
 
 This graphs encapsulates the flow from the higher-level:
 
