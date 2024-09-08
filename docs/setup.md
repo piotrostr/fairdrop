@@ -1,5 +1,25 @@
 # Setup
 
+<h4 align="center">
+  <a href="https://docs.scaffoldeth.io">Documentation</a> |
+  <a href="https://scaffoldeth.io">Website</a>
+</h4>
+
+Some cool features
+
+- the pre-built components are easily customizable but satisfy most of the
+  needs of a typical dapp
+- it is very straightforward to expand to more chains, as simple as adding
+  a new target in the `scaffold.config.ts`
+- contracts automatically get their typings passed onto frontend, after `node
+scripts-js/generateTsAbis.js` is ran as part of the standard workflow
+- you can `yarn verify` to verify the contracts, be sure to re-set the etherscan
+  API key in the `.env` to matching file
+
+Note: I needed a custom deploy script under
+`//fairdrop/packages/foundry/deploy.sh`, `yarn deploy` might need to be
+adjusted to work
+
 ## Intro to Scaffold-ETH 2
 
 🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.

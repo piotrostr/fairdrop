@@ -20,7 +20,7 @@ export const WorldCoinVerification = () => {
     try {
       const res = await fairDrop(
         {
-          functionName: "verifyAndPropagate",
+          functionName: "verify", // replace with verifyAndPropagate to propagate to satellite
           args: [address, BigInt(result.merkle_root), BigInt(result.nullifier_hash), unpackedProof],
         },
         {

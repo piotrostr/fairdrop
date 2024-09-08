@@ -1,9 +1,8 @@
-# 🏗 Scaffold-ETH 2
+# 🚨FairDrop
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+- [Quickstart](https://raw.githubusercontent.com/piotrostr/fairdrop/docs/usage.md)
+- [Development Docs](https://raw.githubusercontent.com/piotrostr/fairdrop/docs/setup.md)
 
-- [Setup Instructions](https://raw.githubusercontent.com/piotrostr/fairdrop/docs/setup.md)
-- [Usage Guide](https://raw.githubusercontent.com/piotrostr/fairdrop/docs/usage.md)
+Let's make Ethereum fair again! 🚀
+
+<sub>Made with <3 by piotrostr.eth</sub>
